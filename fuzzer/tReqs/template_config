@@ -1,0 +1,66 @@
+# Required. The URL address for each target.
+config.target_urls = ["replace_urls"]
+
+# ["http://192.168.2.139:50666/"]
+
+# Required. The 'Host' header value for each target.
+config.target_host_headers = ["replace_hosts"]
+
+# ["192.168.2.139"]
+
+# Required. The input grammar for describing the input structure.
+config.grammar = { 
+            '<start>':
+                ['<request>'],
+
+            '<request>':
+                ['<request-line><base><the-rest>'],
+
+            '<request-line>':
+                ['<method-name><space><uri><space><protocol><separator><version><newline>'],
+
+            '<method-name>':
+                ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'CONNECT', 'OPTIONS', 'TRACE', 'PATCH'],
+
+            '<space>':
+                [' '],
+
+            '<uri>':
+                ['replace_uri'],
+                # ['/DWFSOAYBSYXBAXRA/userRpm/PingIframeRpm.htm?ping_addr=127.0.0.1&doType=ping&isNew=new&sendNum=20&pSize=64&overTime=800&trHops=20'],
+
+            '<protocol>':
+                ['HTTP'],
+
+            '<separator>':
+                ['/'],
+
+            '<version>':
+                ['0.9', '1.0', '1.1'],
+
+            '<newline>':
+                ['\r\n'],
+
+            '<base>':
+                ['replace_base'],
+                
+                # ['Host: 127.0.0.1:8081\r\nUser-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:76.0) Gecko/20100101 Firefox/76.0\r\nAccept-Encoding: gzip, deflate\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8\r\nConnection:close\r\nAccept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2\r\nReferer: http://127.0.0.1:8081/DWFSOAYBSYXBAXRA/userRpm/PingIframeRpm.htm\r\nCookie: Authorization=Basic%20YWRtaW46MjEyMzJmMjk3YTU3YTVhNzQzODk0YTBlNGE4MDFmYzM%3D\r\nUpgrade-Insecure-Requests: 1\r\n\r\n'],
+
+            '<the-rest>':
+                ['replace_rest'],
+            }
+
+# Required. Minimum number of mutations to be done
+config.min_num_mutations = 1
+
+# Required. Maximum number of mutations to be done 
+config.max_num_mutations = 1
+
+# Required. The mutation type for each symbol to be mutated. Two mutation types are supported: tree (0) and string (1).  
+config.symbol_mutation_types = {'<request-line>': 0, '<method-name>': 1, '<space>': 1, '<protocol>': 1, '<separator>': 1, '<version>': 1, '<newline>': 1, '<the-rest>':1} 
+
+# Required if string mutations are used. The character pool to choose from for insert_random_char and replace_random_char operations.
+config.char_pool = ['\x00', '\x01', '\x02', '\x03', '\x04', '\x05', '\x06', '\x07', '\x08', '\t', '\n', '\x0b', '\x0c', '\r', '\x0e', '\x0f', '\x10', '\x11', '\x12', '\x13', '\x14', '\x15', '\x16', '\x17', '\x18', '\x19', '\x1a', '\x1b', '\x1c', '\x1d', '\x1e', '\x1f', ' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', '<', '=', '>', '?', '@', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '[', '\\', ']', '^', '_', '`', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '{', '|', '}', '~', '\x7f']
+
+# Not required. If not specified, the set of children nodes will be used as the pool.
+config.symbol_pool = ['(<request-line>, opt(prob=0.9))', '<method-name>', '<space>', '<protocol>', '<separator>', '<version>', '<newline>']
